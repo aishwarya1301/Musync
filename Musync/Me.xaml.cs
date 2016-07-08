@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using BackgroundAudioShared;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,7 +29,40 @@ namespace Musync
             this.InitializeComponent();
             this.Loaded += Me_Loaded;
         }
+        
 
+        public  void SetUserFName(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            App.SCUser.first_name = txtFirstname.Text;
+          
+        }
+        public void SetUserLName(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+
+            App.SCUser.last_name = txtlastname.Text;
+
+
+        }
+        public void SetUserWeb(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            
+            App.SCUser.website = txtWebsite.Text ;
+           
+
+        }
+        public void SetUserCity(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            
+            App.SCUser.city = txtCity.Text ?? " ";
+            
+
+        }
+        public void SetUserCountry(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+           
+            App.SCUser.country = txtCountry.Text ?? " ";
+
+        }
         private void Me_Loaded(object sender, RoutedEventArgs e)
         {
             if (App.SCUser != null)
@@ -38,9 +72,8 @@ namespace Musync
                 txtWebsite.Text = Convert.ToString(App.SCUser.website);
                 txtCity.Text = Convert.ToString(App.SCUser.city);
                 txtCountry.Text = Convert.ToString(App.SCUser.country);
-                txtFollowers.Text = Convert.ToString(App.SCUser.followers_count);
-                txtFollowing.Text = Convert.ToString(App.SCUser.followings_count);
-                profilePhoto.ImageSource = new BitmapImage(new Uri(App.SCUser.avatar_url));
+               if(!string.IsNullOrEmpty(App.SCUser.avatar_url))
+                profilePhoto.ImageSource = new BitmapImage(new Uri(App.SCUser?.avatar_url));
 
             }
         }

@@ -1,25 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Musync.Controls;
-using Windows.UI.Core;
-using Windows.Foundation.Metadata;
-using Windows.UI.Xaml.Automation;
-using System.Threading.Tasks;
-using System.Net.Http;
-using Newtonsoft.Json;
-using Windows.UI.Popups;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -42,16 +24,22 @@ namespace Musync
                 },
                 new NavMenuItem()
                 {
-                    Symbol = Symbol.Emoji2,
-                    Label = "Likes",
-                    DestPage = typeof(Likes)
-                },
-               new NavMenuItem()
-                {
-                    Symbol = Symbol.Contact,
-                    Label = "Me",
-                    DestPage = typeof(Me)
+                    Symbol = Symbol.Camera,
+                    Label = "Capture",
+                    DestPage = typeof(Capture)
                 }
+                //new NavMenuItem()
+                //{
+                //    Symbol = Symbol.Emoji2,
+                //    Label = "Likes",
+                //    DestPage = typeof(Likes)
+                //},
+               //new NavMenuItem()
+               // {
+               //     Symbol = Symbol.Contact,
+               //     Label = "Me",
+               //     DestPage = typeof(Me)
+               // }
 
             });
 

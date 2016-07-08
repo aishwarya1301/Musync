@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -27,7 +28,8 @@ namespace Musync
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public MainPage()
+       
+ public MainPage()
         {
             this.InitializeComponent();
 
@@ -48,6 +50,7 @@ namespace Musync
                 SoundCloudUser user = JsonConvert.DeserializeObject<SoundCloudUser>(responseText);
 
                 App.SCUserID = user.id;
+                App.SCUser = user;
 
                 //Get Likes 
                 GetLikes();
@@ -65,10 +68,14 @@ namespace Musync
             try
             {
 
-                string responseText = await GetjsonStream(App.SoundCloudLink + App.SoundCloudAPIUsers + App.SCUserID + "/favorites.json?client_id=" + App.SoundCloudClientId);
-                List<SoundCloudTrack> likes = JsonConvert.DeserializeObject<List<SoundCloudTrack>>(responseText);
-                App.nowPlaying = likes;
-
+                string responseText = await GetjsonStream(App.SoundCloudLink + App.SoundCloudAPIUsers + App.SCUserID + "/playlists.json?client_id=" + App.SoundCloudClientId);
+                List<SoundCloudPlaylist> playlists = JsonConvert.DeserializeObject<List<SoundCloudPlaylist>>(responseText);
+                foreach (var x in playlists)
+                {
+                    Debug.WriteLine(x.permalink);
+                }
+                App.nowPlaying = playlists.Find(playlist => string.Equals(playlist.permalink, App.mood, StringComparison.CurrentCultureIgnoreCase)).tracks;
+                Debug.WriteLine(App.nowPlaying);
                 loginProgress.IsActive = false;
 
                 AppShell shell = Window.Current.Content as AppShell;
@@ -82,7 +89,7 @@ namespace Musync
 
         }
 
-        public async Task<string> GetjsonStream(string url) //Function to read from given url
+        public static async Task<string> GetjsonStream(string url) //Function to read from given url
         {
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);

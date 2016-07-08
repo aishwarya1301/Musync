@@ -23,6 +23,9 @@ namespace Musync
     /// </summary>
     sealed partial class App : Application
     {
+        public static string EmotionSubscriptionKey = "0f26af9b6a6943e6820de7b43428fa92";
+        public static string mood = "happy";
+
         public static string SoundCloudClientId = "96620d91e6b4cf82720959b34220aad2";
         public static int SCUserID = 0;
         public static string SoundCloudLink = "http://api.soundcloud.com/";
@@ -65,6 +68,7 @@ namespace Musync
 #endif
             AppShell shell = Window.Current.Content as AppShell;
 
+            App.SCUser = new SoundCloudUser();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

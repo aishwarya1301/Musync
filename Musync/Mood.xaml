@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="Musync.Mood"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Musync"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image x:Name="imageControl" Width="200" Height="200" RequestedTheme="Dark" NineGrid="10"/>
+    <Button x:Name="MoodFinder" Content="Go" Click="MoodFinder_OnClick" Margin="129,0,0,69" VerticalAlignment="Bottom" Background="#3310C199" FontFamily="Segoe Print" Width="102"/>
+    <Button x:Name="Back" Content="Click again" Click="Back_OnClick" HorizontalAlignment="Right" Margin="0,0,129,113" VerticalAlignment="Bottom" FontFamily="Segoe Print" Background="#33F30505" />
+    </Grid>
+</Page>

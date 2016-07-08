@@ -5,6 +5,7 @@
     xmlns:local="using:Musync"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Musync.Controls"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -14,20 +15,16 @@
                     <ImageBrush x:Name="profilePhoto" ImageSource="Assets\Albumart.gif" Stretch="UniformToFill" />
                 </Ellipse.Fill>
             </Ellipse>
-            <TextBlock Text="First Name" Style="{StaticResource TitleTextBlockStyle}" Foreground="Gray" />
-            <TextBlock x:Name="txtFirstname" Text="" Style="{StaticResource HeaderTextBlockStyle}" />
-            <TextBlock Text="Last Name" Style="{StaticResource TitleTextBlockStyle}" Foreground="Gray" />
-            <TextBlock x:Name="txtlastname"  Text="" Style="{StaticResource HeaderTextBlockStyle}" />
-            <TextBlock Text="City" Style="{StaticResource TitleTextBlockStyle}" Foreground="Gray" />
-            <TextBlock x:Name="txtCity"  Text="" Style="{StaticResource HeaderTextBlockStyle}" />
-            <TextBlock Text="Country" Style="{StaticResource TitleTextBlockStyle}" Foreground="Gray" />
-            <TextBlock x:Name="txtCountry"  Text="" Style="{StaticResource HeaderTextBlockStyle}" />
-            <TextBlock Text="Website" Style="{StaticResource TitleTextBlockStyle}" Foreground="Gray" />
-            <TextBlock x:Name="txtWebsite"  Text="" Style="{StaticResource HeaderTextBlockStyle}" />
-            <TextBlock Text="Following" Style="{StaticResource TitleTextBlockStyle}" Foreground="Gray" />
-            <TextBlock x:Name="txtFollowing"  Text="" Style="{StaticResource HeaderTextBlockStyle}" />
-            <TextBlock Text="Followers" Style="{StaticResource TitleTextBlockStyle}" Foreground="Gray" />
-            <TextBlock x:Name="txtFollowers"  Text="" Style="{StaticResource HeaderTextBlockStyle}" />
+            <TextBlock Text="First Name" Style="{StaticResource HeaderTextBlockStyle}" Foreground="Gray" />
+            <controls:EditableTextBox x:Name="txtFirstname"  DataContextChanged="SetUserFName"  />
+            <TextBlock Text="Last Name" Style="{StaticResource HeaderTextBlockStyle}" Foreground="Gray" />
+            <controls:EditableTextBox x:Name="txtlastname"  DataContextChanged="SetUserLName"  />
+            <TextBlock Text="City" Style="{StaticResource HeaderTextBlockStyle}" Foreground="Gray" />
+            <controls:EditableTextBox x:Name="txtCity"  DataContextChanged="SetUserCity"  />
+            <TextBlock Text="Country" Style="{StaticResource HeaderTextBlockStyle}" Foreground="Gray" />
+            <controls:EditableTextBox x:Name="txtCountry" DataContextChanged="SetUserCountry"   />
+            <TextBlock Text="Website" Style="{StaticResource HeaderTextBlockStyle}"  Foreground="Gray" />
+            <controls:EditableTextBox x:Name="txtWebsite" DataContextChanged="SetUserWeb"  />
         </StackPanel>
     </Grid>
 </Page>

@@ -99,6 +99,7 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\EditableTextBox.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Likes.xaml.cs">
       <DependentUpon>Likes.xaml</DependentUpon>
@@ -108,6 +109,12 @@
     </Compile>
     <Compile Include="Me.xaml.cs">
       <DependentUpon>Me.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Capture.xaml.cs">
+      <DependentUpon>Capture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mood.xaml.cs">
+      <DependentUpon>Mood.xaml</DependentUpon>
     </Compile>
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="NowPlaying.xaml.cs">
@@ -161,6 +168,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Me.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Capture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mood.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

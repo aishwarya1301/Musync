@@ -1,20 +1,13 @@
 ﻿using BackgroundAudioShared;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Diagnostics;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Newtonsoft.Json;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,6 +19,7 @@ namespace Musync
     public sealed partial class NowPlaying : Page
     {
         AppShell shell = Window.Current.Content as AppShell;
+        
         public NowPlaying()
         {
             this.InitializeComponent();
@@ -34,12 +28,33 @@ namespace Musync
 
         private void NowPlaying_Loaded(object sender, RoutedEventArgs e)
         {
+            Debug.WriteLine(App.mood);
+            
             if (App.nowPlaying.Count > 0)
             {
                 SoundCloudTrack currentTrack = App.nowPlaying[App.nowplayingTrackId];
                 LoadTrack(currentTrack);
             }
 
+        }
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Debug.WriteLine(App.mood);
+
+            if (App.nowPlaying.Count > 0)
+            {
+                string responseText = await MainPage.GetjsonStream(App.SoundCloudLink + App.SoundCloudAPIUsers + App.SCUserID + "/playlists.json?client_id=" + App.SoundCloudClientId);
+                List<SoundCloudPlaylist> playlists = JsonConvert.DeserializeObject<List<SoundCloudPlaylist>>(responseText);
+                foreach (var x in playlists)
+                {
+                    Debug.WriteLine(x.permalink);
+                }
+                App.nowPlaying = playlists.Find(playlist => string.Equals(playlist.permalink, App.mood, StringComparison.CurrentCultureIgnoreCase)).tracks;
+                Debug.WriteLine(App.nowPlaying);
+
+                SoundCloudTrack currentTrack = App.nowPlaying[App.nowplayingTrackId];
+                LoadTrack(currentTrack);
+            }
         }
 
         private async void LoadTrack(SoundCloudTrack currentTrack)
@@ -80,6 +95,7 @@ namespace Musync
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
+           
 
         }
 
